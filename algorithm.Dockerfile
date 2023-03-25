@@ -21,7 +21,7 @@ RUN apt-get update && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make -j1 && \
+    make -j2 && \
     make install && \
     cd ../.. && \
     rm -rf pcl && \

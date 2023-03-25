@@ -21,7 +21,7 @@ RUN apt-get update && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make -j$(nproc) && \
+    make -j1 && \
     make install && \
     cd ../.. && \
     rm -rf pcl && \

@@ -3,15 +3,17 @@ FROM ubuntu:20.04 as compile
 
 # Set the working directory
 WORKDIR /app
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/New_York
 
 # Install necessary dependencies
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+RUN apt-get update && \
     apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install PCL from source
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+RUN apt-get update && \
     apt-get install -y git && \
     git clone https://github.com/PointCloudLibrary/pcl.git && \
     cd pcl && \

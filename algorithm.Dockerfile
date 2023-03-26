@@ -2,7 +2,6 @@
 FROM ubuntu:20.04 as compile
 
 # Set the working directory
-WORKDIR /app
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 
@@ -41,7 +40,7 @@ RUN cd Crow && \
     make install
     
 COPY microservice.cpp /app/
-RUN mkdir build
+WORKDIR /app
 
 # Compile the code
 RUN g++ -std=c++14 -O2 -Wall -Wextra -pthread -o microservice microservice.cpp -lboost_filesystem -lboost_system -lcrow -lpcl_common -lpcl_io -lpcl_surface -lpcl_search -lpcl_kdtree

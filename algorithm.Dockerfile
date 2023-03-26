@@ -18,10 +18,16 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
     
-RUN apt update && \
-    apt install -y libpcl-dev && \
-    rm -rf /var/lib/apt/lists/*
+# Update the system and install required packages
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libboost-all-dev \
+    libasio-dev
 
+# Clone the Crow repository
 RUN git clone https://github.com/CrowCpp/Crow.git
 
 # Build and install Crow
@@ -31,6 +37,11 @@ RUN cd Crow && \
     cmake .. && \
     make && \
     make install
+    
+RUN apt update && \
+    apt install -y libpcl-dev && \
+    rm -rf /var/lib/apt/lists/*
+
     
 COPY microservice.cpp /app/
 RUN mkdir build

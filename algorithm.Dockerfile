@@ -8,7 +8,7 @@ ENV TZ=America/New_York
 
 # Install necessary dependencies
 RUN apt update && \
-    apt install libpcl-dev \
+    apt install libpcl-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Install PCL from source

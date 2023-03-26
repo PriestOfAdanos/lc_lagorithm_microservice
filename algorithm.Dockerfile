@@ -7,6 +7,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 
 RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libboost-all-dev
+    
+RUN apt-get update && \
     apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

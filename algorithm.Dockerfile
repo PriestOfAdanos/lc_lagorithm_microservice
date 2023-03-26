@@ -12,21 +12,12 @@ RUN apt-get update && \
     git \
     libboost-all-dev \
     libasio-dev \
-    libpcl-dev
-    
-RUN apt-get update && \
-    apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
+    libpcl-dev \
+    libeigen3-dev \
+    libflann-dev \
+    libvtk7-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-    
-# Update the system and install required packages
-RUN apt-get update && \
-    apt-get install -y \
-    build-essential \
-    cmake \
-    git \
-    libboost-all-dev \
-    libasio-dev
 
 # Clone the Crow repository
 RUN git clone https://github.com/CrowCpp/Crow.git

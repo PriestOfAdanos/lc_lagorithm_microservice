@@ -15,7 +15,16 @@ RUN apt update && \
     apt install -y libpcl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy the source code into the container
+RUN git clone https://github.com/CrowCpp/Crow.git
+
+# Build and install Crow
+RUN cd Crow && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make && \
+    make install
+    
 COPY microservice.cpp /app/
 RUN mkdir build
 

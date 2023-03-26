@@ -6,26 +6,13 @@ WORKDIR /app
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 
-# Install necessary dependencies
+RUN apt-get update && \
+    apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
 RUN apt update && \
     apt install -y libpcl-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install PCL from source
-RUN apt-get update && \
-    apt-get install -y git && \
-    git clone https://github.com/PointCloudLibrary/pcl.git && \
-    cd pcl && \
-    git checkout pcl-1.12.0 && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make -j2 && \
-    make install && \
-    cd ../.. && \
-    rm -rf pcl && \
-    apt-get remove -y git && \
-    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy the source code into the container

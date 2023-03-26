@@ -7,9 +7,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 
 # Install necessary dependencies
-RUN apt-get update && \
-    apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
-    apt-get clean && \
+RUN apt update && \
+    apt install libpcl-dev \
     rm -rf /var/lib/apt/lists/*
 
 # Install PCL from source

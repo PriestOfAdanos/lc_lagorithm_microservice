@@ -11,7 +11,9 @@ RUN apt-get update && \
     build-essential \
     cmake \
     git \
-    libboost-all-dev
+    libboost-all-dev \
+    libasio-dev \
+    libpcl-dev
     
 RUN apt-get update && \
     apt-get install -y g++ make cmake libboost-all-dev libeigen3-dev libflann-dev libvtk7-dev && \
@@ -37,11 +39,6 @@ RUN cd Crow && \
     cmake .. && \
     make && \
     make install
-    
-RUN apt update && \
-    apt install -y libpcl-dev && \
-    rm -rf /var/lib/apt/lists/*
-
     
 COPY microservice.cpp /app/
 RUN mkdir build

@@ -34,11 +34,11 @@ COPY microservice.cpp /app/
 WORKDIR /app
 
 # Compile the code
-RUN g++ -std=c++14 -O2 -Wall -Wextra -pthread -o microservice microservice.cpp -lboost_filesystem -lboost_system -lcrow -lpcl_common -lpcl_io -lpcl_surface -lpcl_search -lpcl_kdtree
+# RUN g++ -std=c++14 -O2 -Wall -Wextra -pthread -o microservice microservice.cpp -lboost_filesystem -lboost_system -lcrow -lpcl_common -lpcl_io -lpcl_surface -lpcl_search -lpcl_kdtree
 
-FROM ubuntu:20.04 as runtime
-COPY --from=compile /app/microservice .
-# Expose the port used by the microservice
-EXPOSE 8080
-# Start the microservice
-CMD ["./microservice"]
+# FROM ubuntu:20.04 as runtime
+# COPY --from=compile /app/microservice .
+# # Expose the port used by the microservice
+# EXPOSE 8080
+# # Start the microservice
+# CMD ["./microservice"]
